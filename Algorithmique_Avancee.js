@@ -117,12 +117,12 @@ function fusion (tabA,tabB){
     if (tabA [0] <= tabB[0]){
         //pareil
                             //tableau de case1 à la fin
-        return [tabA[0]].concat(fusion(tabA.slice(1, tabA.length, tabB)))
+        return [tabA.shift()].concat(fusion(tabA, tabB))
     }
     
     else {
         //Pareil
-            return [tabB[0]].concat(fusion(tabA, tabB.slice(1, tabB.length)))            
+            return [tabB.shift()].concat(fusion(tabA, tabB))
         }
     
     
@@ -131,103 +131,10 @@ function fusion (tabA,tabB){
 fusionSort(liste);
 console.log(fusionSort(liste));
 
-/*
-
-function merge(left, right){
-    // La fonction merge() fusionne 2 tableaux "left" et "right".
-
-    //"tab" correspond ici à "liste"
-
-    l = 0, r = 0;
-
-    // La variable "l" garde la trace de l'index pour le tableau "left".
-
-    // La variable "r" fait la même chose pour le tableu "right". 
-
-    while (l < left.length && r < right.length){
-        if (left[l] < right[r]){
-            liste.push(l++);
-        } else {
-            liste.push(r++);
-        }
-        }
-
-        return liste.concat(left.slice(1)).concat(right.slice(r));
-        // Chaque fois qu’une valeur est ajoutée au tableau, sa variable d’index correspondante est incrémentée.
-        // Dès que l’un des tableaux est épuisé, les valeurs restantes sont ajoutées à la fin du tableau « liste » à l’aide de concat(ligne 94).
-    }
-
-    function fusionSort (liste){
-
-        if (liste.length < 2) {
-            return liste;
-        }
-    
-
-    var mid = Math.floor(liste.length / 2),
-    right = liste.slice(mid),
-    left = liste.slice(0, mid)
-    p= merge(fusionSort(left), fusionSort(right));
-
-    p.unshift(0, liste.length);
-    liste.splice.apply(liste, p);
-    return liste; 
-
-}  
-
-
-
- fusionSort(liste); 
-
- console.log(liste);
-
-*/
-
 
 //Tri Rapide
 
-//Création d'une fonction "partition"
-function partition(liste, start, end){
-    //Prendre le dernier élément en tant que pivot
-    const pivotValue = liste[end];
-    let pivotIndex = start;
-    // La variable "pivotIndex" est utilisée pour garder une empreinte de la position "médiane".
-    // Tous les éléments à gauche sont inférieurs à "pivotValue"
-    // Tous les éléments à droite sont supérieurs à "pivotValue"  
 
-    for (let i = start; i <end; i++){
-        //boucle parcourant le tableau
-        if (liste[i] < pivotValue){
-        //Echanger les éléments
-        [liste[i], liste [pivotIndex]] = [liste[pivotIndex], liste[i]]
-        //Déplacement vers l'élément suivant
-        pivotIndex++;    
-        }
-    }
 
-    // Déplacer la valeur pivot au milieu. 
-    [liste[pivotIndex], liste[end]] = [liste[end], liste[pivotIndex]]
-    return pivotIndex;
-    
-};
 
-//Création d'une fonction récursive
-function quickSortRecursive(liste, start, end){
-    //Case de Base ou Case Finale
-    if (start>=end) {
-        return;
-    }
-
-    //Retourner "pivotIndex"
-    let index = partition(liste, start, end);
-    
-    //Appliquer la même logique de manière récursive vers la aguche et la droite des sous-tableaux
-    quickSort(liste, start, index -1);
-    quickSort(liste, index, +1, end);
-}
-
-    // //Test du code
-    // quickSortRecursive(liste, 0, liste.length -1)
-
-    // console.log(liste)
 
