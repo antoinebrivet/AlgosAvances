@@ -33,7 +33,6 @@ function insertSort(liste) {
 }
 
 
-//insertSort(liste)
 //console.log("liste insert sort : ", liste);
 
 
@@ -62,7 +61,7 @@ function selectSort(liste){
     }   
 }
 
-//selectSort(liste)
+
 //console.log ("liste select sort : ", liste)
 
 
@@ -87,7 +86,7 @@ function bubbleSort(liste){
     return liste
 }
 
-//bubbleSort(liste);
+
 //console.log(bubbleSort(liste));
 
 
@@ -128,13 +127,66 @@ function fusion (tabA,tabB){
     
 }
 
-fusionSort(liste);
-console.log(fusionSort(liste));
 
+//console.log(fusionSort(liste));
 
-//Tri Rapide
+//Tri rapide 
 
+function quickSort(tab, premier, dernier){
+    if (premier<dernier){
+        pi = partionner(tab, premier, dernier)//pi = index de partionnement
+        quickSort(tab, premier, pi -1)
+        quickSort(tab, pi + 1, dernier)
+    }
+}
 
+function partionner(tab, premier, dernier, pivot){
+    pivot = dernier;//pivot = élément à placer à la bonne position
+    j = premier;
+    for (let i = premier; i < dernier ; i++){
+        if (tab[i]<= tab[pivot]){
+            swap(tab, i, j)
+            j=j+1
+        }
+        
+    }
+    swap(tab,dernier, j)
+    return j
+}
 
+function tri_rapide(){
+    quickSort(liste, 0, liste.length-1);
+    return liste;
+}
 
+console.log(tri_rapide());
+
+//Tri Rapide façon compliquée
+/*
+function quickSort(liste){
+
+    if (liste.length === 1){
+        return liste;
+    }
+    
+    const pivot = liste[liste.length - 1];
+    const leftArr = [];
+    const rightArr = [];
+    
+for (let i = 0; i < liste.length -1; i++ ){
+    liste[i] < pivot ? leftArr.push(liste[i]) : rightArr.push(liste[i]); 
+}    
+
+if(leftArr.length > 0 && rightArr.length > 0 ){
+return [...quickSort(leftArr), pivot, ...quickSort(rightArr)]
+}else if (leftArr.length > 0) {
+    return [ ...quickSort(leftArr), pivot];
+}else {
+    return [pivot, ...quickSort(rightArr)];
+}
+}
+
+//quickSort(liste);
+//console.log(quickSort(liste))
+*/
 
